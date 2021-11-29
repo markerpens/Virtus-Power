@@ -1,5 +1,5 @@
 <?php
-
+// all the things necesary for the database, like connecting, disconnecting, confirmatioins and errors
 require_once('db_credentials.php');
 
 function db_connect() {

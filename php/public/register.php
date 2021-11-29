@@ -1,25 +1,25 @@
 <?php
-
 require_once('../private/initialize.php');
 
 $errors = [];
 
-
-
-
 if(is_post_request()){
 
+    //check if passwords match 
     if($_POST['password'] === $_POST['password_confirm']){
+
+        // if passwords match then look for an existing user. 
         $existing_query = "SELECT COUNT(*) as count FROM admins WHERE username ='" . $_POST['username'] . "'"; 
         $existing_res = mysqli_query($db, $existing_query);
 
-
+        // if count is not 0 that means there is an existing account with that username. 
         if(mysqli_fetch_assoc($existing_res)['count'] !=0){
             array_push($errors, 'The username already exists in the database, please try another username instead');
         } else {
-            //encript password
+            // if no account with same username then encript password.
             $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+            // inserts all the necesary values into the database. 
             $insert_user_query = "INSERT INTO admins(username, email, hashed_password, first_name, last_name, gender) VALUES (
                 '" . mysqli_real_escape_string($db, $_POST['username'])  . "',
                 '" . mysqli_real_escape_string($db, $_POST['email']) . "',
@@ -28,21 +28,24 @@ if(is_post_request()){
                 '" . mysqli_real_escape_string($db, $_POST['last_name']) . "',
                 '" . mysqli_real_escape_string($db, $_POST['gender']) . "')";
 
+            // if sucessful data insertion to database then do the folowing. 
             if(mysqli_query($db, $insert_user_query)){
-                //fill 
-                echo "Worked";
+                //sets the user to the session and reidrects to the main page.
+                $_SESSION['username'] = $_POST['username'];
+                redirect_to(url_for('main.php'));
             } else {
                 // displays the mysql error if failed
                 array_push($errors, mysqli_error($db)); 
             }
         }
     } else {
+        // pushes the error into the array and displays the error message 
         array_push($errors, "Passwords don't match");
     }
 }
-
 ?>
 
+<!-- the structure to the register page -->
 <?php $page_title = 'Register'; ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 

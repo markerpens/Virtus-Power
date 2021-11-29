@@ -39,7 +39,7 @@ function is_post_request() {
   }
 
   function is_logged_in() {
-    if(!isset($_SESSION['username'])) {redirect_to(url_for('/staff/login.php'));}
+    if(!isset($_SESSION['username'])) {redirect_to(url_for('/login.php'));}
   }
 
 ?>

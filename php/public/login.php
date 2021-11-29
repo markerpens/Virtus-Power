@@ -9,7 +9,10 @@ $password = '';
 if(isset($_SESSION['username'])) {redirect_to(url_for('/main.php'));}
 
 if(is_post_request()){
+    // if username and passoword fields are not empty proceed 
     if(!empty($_POST['username']) && !empty($_POST['password'])){
+
+        // write querry to retrive hashed password/ 
         $user_query = "SELECT hashed_password FROM admins WHERE username = '" . $_POST['username'] . "'";
         $user_res = mysqli_query($db, $user_query);
 
@@ -25,17 +28,21 @@ if(is_post_request()){
                 $_SESSION['username'] = $_POST['username'];
                 redirect_to(url_for('/main.php'));
             } else {
+                // pushes the errors to the uers
                 array_push($errors, "The entered password do not match our record.");
             }
         } else {
+            // pushes the errors to the uers
             array_push($errors, "The account entered does not exist");
         }
     } else {
+        // pushes the errors to the uers
         array_push($errors, "username or password field is not filled");
     }
 }
 ?>
 
+<!-- structure of the page for previous php to work -->
 <?php $page_title = 'Log in'; ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 
