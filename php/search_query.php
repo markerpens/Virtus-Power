@@ -20,14 +20,14 @@ if (isset($_POST['request'])) {
     $result = mysqli_query($connection, $query);
 
     $count = mysqli_num_rows($result);
+    start_table();
 
     if ($count) {
         // Loop through results
         while ($row = mysqli_fetch_array($result)) {
-            start_table();
             powerlifting_table("<a href=\"details.php?user_id={$row['Id']}\">$row[0]</a>", $row[1], $row[4], $row[3], $row[6], $row[7], $row[8], $row[9], $row[10], $row[12]);
-            end_table();
         }
+        end_table();
     } else {
         echo "No records found.";
     }

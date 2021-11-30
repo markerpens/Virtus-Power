@@ -3,7 +3,7 @@
 function start_table()
 {
     echo "<table class=\"table\" border=\"1\">\n";
-    // echo "<tr><th style=\"text-align:left;width:150px\">Athlete Name</th> <th>Sex</th> <th>Age Division</th> <th>Equipment</th> <th>Weight Class</th> <th>Best Squat</th> <th>Best Bench Press</th> <th>Best Deadlift</th> <th>Total</th> </tr>";
+    echo "<tr><th>Athlete Name</th> <th>Sex Division</th> <th>Age Division</th> <th>Equipment</th> <th>Weight Class (Kg)</th> <th>Best Squat (Kg)</th> <th>Best Bench Press (Kg)</th> <th>Best Deadlift (Kg)</th> <th>Total (Kg)</th> <th>Dots</th> </tr>";
 }
 
 // Create the powerlifting table on the main page

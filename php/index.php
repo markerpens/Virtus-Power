@@ -39,13 +39,14 @@ echo "</select>";
 echo "</form>";
 
 echo "<div class=container>";
+start_table();
+
 // Loop through results
 while ($row = mysqli_fetch_array($result)) {
-    start_table();
-    powerlifting_table("<a href=\"details.php?user_id={$row['Id']}\">$row[0]</a>", $row[1], $row[4], $row[3], $row[6], $row[7], $row[8], $row[9], $row[10], $row[12]);
-    end_table();
-}
 
+    powerlifting_table("<a href=\"details.php?user_id={$row['Id']}\">$row[0]</a>", $row[1], $row[4], $row[3], $row[6], $row[7], $row[8], $row[9], $row[10], $row[12]);
+}
+end_table();
 echo "</div>";
 
 // Make sure to close out the database connection

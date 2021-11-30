@@ -24,15 +24,14 @@ WHERE Id = '$id'";
 
 $query = mysqli_query($connection, $query_string);
 
+start_table();
+
 // Loop through results
 while ($row = mysqli_fetch_assoc($query)) {
-
-    start_table();
-
     details($row['Name'], $row['Sex'], $row['Division'], $row['Equipment'], $row['WeightClassKg'],  $row['Best3SquatKg'],  $row['Best3BenchKg'], $row['Best3DeadliftKg'], $row['Dots'], $row['TotalKg'],  $row['MeetName'],  $row['MeetTown'],  $row['Date']);
-
-    end_table();
 }
+
+end_table();
 
 
 // ----------- INCLUDE FOOTER ----------- //
