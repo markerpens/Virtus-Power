@@ -37,7 +37,7 @@ WHERE Id = '$id'";
 $query = mysqli_query($db, $query_string);
 $query2 = mysqli_query($db, $query_string);
 
-start_table();
+start_details_table();
 
 // Loop through results
 while ($row = mysqli_fetch_assoc($query)) {
