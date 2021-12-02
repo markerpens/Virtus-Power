@@ -1,19 +1,21 @@
 <?php
+require_once('../private/initialize.php');
 // ----------- INCLUDE HEADER ----------- //
-include 'header.php';
+// include 'header.php';
+include '../private/header.php';
 include 'main_functions.php';
-session_start();
+// session_start();
 
 echo "<h1>Lifter Details</h1>";
 
 // ----------- CONNECT TO DATABASE ----------- //
 
-include 'db.php';
-$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+// include 'db.php';
+// $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-if (mysqli_connect_errno()) {
-    echo mysqli_connect_error();
-}
+// if (mysqli_connect_errno()) {
+//     echo mysqli_connect_error();
+// }
 
 // ----------- DISPLAY DETAILS ----------- //
 
@@ -22,7 +24,7 @@ $id = $_GET['user_id'];
 $query_string = "SELECT * FROM bcpa_powerlifting_database 
 WHERE Id = '$id'";
 
-$query = mysqli_query($connection, $query_string);
+$query = mysqli_query($db, $query_string);
 
 // start_table();
 

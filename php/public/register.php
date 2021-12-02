@@ -9,7 +9,7 @@ if(is_post_request()){
     if($_POST['password'] === $_POST['password_confirm']){
 
         // if passwords match then look for an existing user. 
-        $existing_query = "SELECT COUNT(*) as count FROM admins WHERE username ='" . $_POST['username'] . "'"; 
+        $existing_query = "SELECT COUNT(*) as count FROM members WHERE username ='" . $_POST['username'] . "'"; 
         $existing_res = mysqli_query($db, $existing_query);
 
         // if count is not 0 that means there is an existing account with that username. 
@@ -20,7 +20,7 @@ if(is_post_request()){
             $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
             // inserts all the necesary values into the database. 
-            $insert_user_query = "INSERT INTO admins(username, email, hashed_password, first_name, last_name, gender) VALUES (
+            $insert_user_query = "INSERT INTO members(username, email, hashed_password, first_name, last_name, gender) VALUES (
                 '" . mysqli_real_escape_string($db, $_POST['username'])  . "',
                 '" . mysqli_real_escape_string($db, $_POST['email']) . "',
                 '" . mysqli_real_escape_string($db, $hashed_password) . "',
@@ -32,7 +32,7 @@ if(is_post_request()){
             if(mysqli_query($db, $insert_user_query)){
                 //sets the user to the session and reidrects to the main page.
                 $_SESSION['username'] = $_POST['username'];
-                redirect_to(url_for('main.php'));
+                redirect_to(url_for('index.php'));
             } else {
                 // displays the mysql error if failed
                 array_push($errors, mysqli_error($db)); 

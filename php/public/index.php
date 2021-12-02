@@ -1,3 +1,9 @@
+<?php
+require_once('../private/initialize.php');
+include '../private/header.php';
+include 'main_functions.php';
+?>
+
 <div class="jumbotron jumbotron-fluid text-center">
     <div class="container">
         <h1 class="display-4">Virtus Power</h1>
@@ -6,28 +12,29 @@
 </div>
 
 <?php
-// ----------- INCLUDE ESSENTIALS ----------- //
+// require_once('../private/initialize.php');
+// // ----------- INCLUDE ESSENTIALS ----------- //
 
-include 'header.php';
-include 'main_functions.php';
+// include '../private/header.php';
+// include 'main_functions.php';
 // include 'search_query.php';
-session_start();
+// session_start();
 
 // ----------- CONNECT TO DATABASE ----------- //
 
-include 'db.php';
-$connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+// include 'db.php';
+// $db = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-if (mysqli_connect_errno()) {
-    echo mysqli_connect_error();
-}
+// if (mysqli_connect_errno()) {
+//     echo mysqli_connect_error();
+// }
 
 // ----------- DISPLAY POWERLIFTING TABLE ----------- //
 
 $query = "SELECT * FROM bcpa_powerlifting_database 
 ORDER BY TotalKg DESC";
 
-$result = mysqli_query($connection, $query);
+$result = mysqli_query($db, $query);
 
 // echo "<h1>Virtus Power</h1>";
 
@@ -57,7 +64,7 @@ end_table();
 echo "</div>";
 
 // Make sure to close out the database connection
-mysqli_close($connection);
+mysqli_close($db);
 
 // include 'ajax.php';
 

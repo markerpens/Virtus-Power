@@ -6,14 +6,14 @@ $username = '';
 $password = '';
 
 // redirect to desired page if a session is detected
-if(isset($_SESSION['username'])) {redirect_to(url_for('/main.php'));}
+if(isset($_SESSION['username'])) {redirect_to(url_for('index.php'));}
 
 if(is_post_request()){
     // if username and passoword fields are not empty proceed 
     if(!empty($_POST['username']) && !empty($_POST['password'])){
 
         // write querry to retrive hashed password/ 
-        $user_query = "SELECT hashed_password FROM admins WHERE username = '" . $_POST['username'] . "'";
+        $user_query = "SELECT hashed_password FROM members WHERE username = '" . $_POST['username'] . "'";
         $user_res = mysqli_query($db, $user_query);
 
         // if no record display error message
@@ -26,7 +26,7 @@ if(is_post_request()){
 
                 //store session and redirect
                 $_SESSION['username'] = $_POST['username'];
-                redirect_to(url_for('/main.php'));
+                redirect_to(url_for('index.php'));
             } else {
                 // pushes the errors to the uers
                 array_push($errors, "The entered password do not match our record.");

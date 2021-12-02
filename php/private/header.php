@@ -1,42 +1,37 @@
 <?php
-if(!isset($page_title)) { $page_title = 'Header Area'; }
+if(!isset($page_title)) { $page_title = 'Virtus Power'; }
 ?>
 
-<!doctype html>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>Virtus Power - <?php echo h($page_title); ?></title>
-  <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtus Power</title>
 
-  <!-- look into umcommenting later -->
-  <!-- <link rel="stylesheet" media="all" href=" -->
-  <?php 
-    // echo url_for('/stylesheets/staff.css'); 
-    ?>
-  <!-- " /> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
 </head>
 
-<body>
-  <header>
-    <h1>Header Area</h1>
-  </header>
 
-  <navigation>
+<navigation>
     <ul>
-      <li>User:
+      <li>User: 
         <?php
             // checks if session is set, if it is then display the username
             echo $_SESSION['username'] ?? '';
           ?>
-
-        <!-- link to the other pages that are used for login/register and logout  -->
       </li>
-      <li><a href="<?php echo url_for('main.php'); ?>">Main</a></li>
+      <!-- link to the other pages that are used for login/register and logout  -->
+      <li><a href="<?php echo url_for('index.php'); ?>">Main</a></li>
       <li><a href="<?php echo url_for('register.php'); ?>">Register</a></li>
       <li><a href="<?php echo url_for('logout.php'); ?>">Logout</a></li>
+      <li><a href="<?php echo url_for('login.php'); ?>">Login</a></li>
     </ul>
   </navigation>
+
+<body>
