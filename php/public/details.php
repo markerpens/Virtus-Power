@@ -4,9 +4,19 @@ require_once('../private/initialize.php');
 // include 'header.php';
 include '../private/header.php';
 include 'main_functions.php';
+?>
+
+<div class="jumbotron jumbotron-fluid text-center">
+    <div class="container">
+        <h1 class="display-4">Virtus Power</h1>
+        <p class="lead">Lifter Details</p>
+    </div>
+</div>
+
+<?php
 // session_start();
 
-echo "<h1>Lifter Details</h1>";
+// echo "<h1>Lifter Details</h1>";
 
 // ----------- CONNECT TO DATABASE ----------- //
 
@@ -31,7 +41,7 @@ start_table();
 
 // Loop through results
 while ($row = mysqli_fetch_assoc($query)) {
-    details($row['Name'], $row['Sex'], $row['Division'], $row['Equipment'], $row['WeightClassKg'],  $row['Best3SquatKg'],  $row['Best3BenchKg'], $row['Best3DeadliftKg'], $row['Dots'], $row['TotalKg'],  $row['MeetName'],  $row['MeetTown'],  $row['Date']);
+    details($row['Name'], $row['Sex'], $row['Division'], $row['Equipment'], $row['WeightClassKg'],  $row['Best3SquatKg'],  $row['Best3BenchKg'], $row['Best3DeadliftKg'], $row['TotalKg'], $row['Dots']);
 }
 
 end_table();

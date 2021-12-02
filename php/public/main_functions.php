@@ -4,7 +4,6 @@ function start_table()
 {
     echo "<table class=\" table table-light table-bordered table-hover\" border=\"1\">\n";
     echo "<thead>
-    <tr><th>Athlete Name</th> 
     <th>Sex Division</th> 
     <th>Age Division</th> 
     <th>Equipment</th> 
