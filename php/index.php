@@ -1,3 +1,10 @@
+<div class="jumbotron jumbotron-fluid text-center">
+    <div class="container">
+        <h1 class="display-4">Virtus Power</h1>
+        <p class="lead">Powerlifing Data at a Glance.</p>
+    </div>
+</div>
+
 <?php
 // ----------- INCLUDE ESSENTIALS ----------- //
 
@@ -5,8 +12,6 @@ include 'header.php';
 include 'main_functions.php';
 // include 'search_query.php';
 session_start();
-
-echo "<h1>Virtus Power</h1>";
 
 // ----------- CONNECT TO DATABASE ----------- //
 
@@ -24,12 +29,14 @@ ORDER BY TotalKg DESC";
 
 $result = mysqli_query($connection, $query);
 
+// echo "<h1>Virtus Power</h1>";
+
 // Filter queries
 echo "<form name='search-filter' method='POST' action='index.php'>";
 echo "<select name=fetchval id=fetchval>";
 
 echo "
-<option hidden disabled selected value value=''>--- Filter Sex Class ---</option>;
+<option hidden disabled selected value value=''>--- Filter Sex Division ---</option>;
 <option value: M> M </option>
 <option value: F> F </option>
 ";
@@ -38,7 +45,7 @@ echo "
 echo "</select>";
 echo "</form>";
 
-echo "<div class=container>";
+echo "<div class=main-container>";
 start_table();
 
 // Loop through results

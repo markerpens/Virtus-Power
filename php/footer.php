@@ -13,10 +13,10 @@
                 type: "POST",
                 data: 'request=' + value,
                 beforeSend: function() {
-                    $(".container").html("<span>Working...</span>");
+                    $(".main-container").html("<span>Working...</span>");
                 },
                 success: function(data) {
-                    $(".container").html(data);
+                    $(".main-container").html(data);
                 }
             });
         });
