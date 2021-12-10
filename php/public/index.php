@@ -37,8 +37,9 @@ ORDER BY TotalKg DESC";
 $result = mysqli_query($db, $query);
 
 // echo "<h1>Virtus Power</h1>";
+?>
 
-// Filter queries
+<!-- // Filter queries
 echo "<form name='search-filter' method='POST' action='index.php'>";
 echo "<select name=fetchval id=fetchval>";
 
@@ -50,8 +51,40 @@ echo "
 
 // echo "<input type='submit' name='submit'>";
 echo "</select>";
-echo "</form>";
+echo "</form>"; -->
 
+<!--  -->
+<form name='search-filter' method='POST' action='index.php'>
+
+    <select name=fetchval id=fetchval class="form-control">
+
+        <option hidden disabled selected value value=''>--- Filter Sex Division ---</option>
+        <option value: M> M </option>
+        <option value: F> F </option>
+
+    </select>
+
+    <!-- <select name=equipment id=equipment class="form-control">
+
+        <option hidden disabled selected value value=''>--- Filter Equipment ---</option>
+        <option value: Single-ply> Single-ply </option>
+        <option value: Raw> Raw </option>
+
+    </select> -->
+</form>
+
+<!-- <form name='search-filter' method='POST' action='index.php' class="equipment">
+    <select name=fetchval id=fetchval>
+
+        <option hidden disabled selected value value=''>--- Filter Equipment ---</option>
+        <option value: Single-ply> Single-ply </option>
+        <option value: Raw> Raw </option>
+
+    </select>
+</form> -->
+
+
+<?php
 echo "<div class=main-container>";
 start_table();
 
@@ -70,3 +103,4 @@ mysqli_close($db);
 
 // ----------- INCLUDE FOOTER ----------- //
 include 'footer.php';
+?>
