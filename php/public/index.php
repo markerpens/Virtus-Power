@@ -32,57 +32,46 @@ include 'main_functions.php';
 // ----------- DISPLAY POWERLIFTING TABLE ----------- //
 
 $query = "SELECT * FROM bcpa_powerlifting_database 
-ORDER BY TotalKg DESC";
+ORDER BY Dots DESC";
 
 $result = mysqli_query($db, $query);
 
-// echo "<h1>Virtus Power</h1>";
 ?>
 
-<!-- // Filter queries
-echo "<form name='search-filter' method='POST' action='index.php'>";
-echo "<select name=fetchval id=fetchval>";
 
-echo "
-<option hidden disabled selected value value=''>--- Filter Sex Division ---</option>;
-<option value: M> M </option>
-<option value: F> F </option>
-";
+<select name="equipment" id="equipment" class="select-filter">
 
-// echo "<input type='submit' name='submit'>";
-echo "</select>";
-echo "</form>"; -->
+    <option selected name="All-Equipment"> All-Equipment </option>
+    <option name="Raw"> Raw </option>
+    <option name="Single-ply"> Single-ply </option>
 
-<!--  -->
-<form name='search-filter' method='POST' action='index.php'>
+</select>
 
-    <select name=fetchval id=fetchval class="form-control">
+<select name="seggs" id="seggs" class="select-filter">
 
-        <option hidden disabled selected value value=''>--- Filter Sex Division ---</option>
-        <option value: M> M </option>
-        <option value: F> F </option>
+    <option selected name="All-Sexes"> All-Sexes </option>
+    <option name="M"> M </option>
+    <option name="F"> F </option>
 
-    </select>
 
-    <!-- <select name=equipment id=equipment class="form-control">
+</select>
 
-        <option hidden disabled selected value value=''>--- Filter Equipment ---</option>
-        <option value: Single-ply> Single-ply </option>
-        <option value: Raw> Raw </option>
+<select name="division" id="division" class="select-filter">
 
-    </select> -->
+    <option selected name="All-Divisions"> All-Divisions </option>
+    <option name="59"> 59 </option>
+    <option name="66"> 66 </option>
+    <option name="74"> 74 </option>
+    <option name="83"> 83 </option>
+    <option name="93"> 93 </option>
+    <option name="105"> 105 </option>
+    <option name="120"> 120 </option>
+    <option name="120+"> 120+ </option>
+
+
+</select>
+
 </form>
-
-<!-- <form name='search-filter' method='POST' action='index.php' class="equipment">
-    <select name=fetchval id=fetchval>
-
-        <option hidden disabled selected value value=''>--- Filter Equipment ---</option>
-        <option value: Single-ply> Single-ply </option>
-        <option value: Raw> Raw </option>
-
-    </select>
-</form> -->
-
 
 <?php
 echo "<div class=main-container>";

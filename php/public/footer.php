@@ -5,13 +5,24 @@
 <!-- Initiate AJAX search query -->
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#fetchval").on('change', function() {
-            var value = $(this).val();
-            // alert(value);
+        $(".select-filter").on('change', function() {
+            var seggs = $("#seggs").val();
+            var equipment = $("#equipment").val();
+            var division = $("#division").val();
+            // alert(seggs);
+            // alert(equipment);
             $.ajax({
                 url: "search_query.php",
                 type: "POST",
-                data: 'request=' + value,
+                data: {
+                    seggs: seggs,
+                    equipment: equipment,
+                    division: division,
+                    // seggs: $('#seggs').val(),
+                    // equipment: $('#equipment').val(),
+
+                    // year: year
+                },
                 beforeSend: function() {
                     $(".main-container").html("<span>Working...</span>");
                 },
@@ -20,7 +31,68 @@
                 }
             });
         });
+        // $("#equipment").trigger("change");
     });
+
+    // $(document).ready(function() {
+    //     $(".select-filter").on('change', function() {
+    //         var seggs = $("#seggs").val();
+    //         var equipment = $("#equipment").val();
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "search_query.php",
+    //             data: {
+    //                 seggs: seggs,
+    //                 equipment: equipment,
+    //             },
+
+    //             beforeSend: function() {
+    //                 $(".main-container").html("<span>Working...</span>");
+    //             },
+    //             success: function(result) {
+    //                 $("#main-container").html(result);
+    //             }
+    //         });
+    //     });
+    // });
+
+    // $(document).ready(function() {
+
+    //     filter_data();
+
+    //     function filter_data() {
+    //         $('.main-container').html(data);
+    //         var action = 'search_query';
+    //         var brand = get_filter('seggs');
+    //         var ram = get_filter('equipment');
+    //         $.ajax({
+    //             url: "search_query.php",
+    //             method: "POST",
+    //             data: {
+    //                 action: action,
+    //                 seggs: seggs,
+    //                 equipment: equipment,
+    //             },
+    //             success: function(data) {
+    //                 $('.main-container').html(data);
+    //             }
+    //         });
+    //     }
+
+    //     function get_filter(class_name) {
+    //         var filter = [];
+    //         $('.' + class_name + ':checked').each(function() {
+    //             filter.push($(this).val());
+    //         });
+    //         return filter;
+    //     }
+
+    //     $('.select-filter').click(function() {
+    //         filter_data();
+    //     });
+    // });
+
+
 
     // $(document).ready(function() {
     //     $('#seggs').change(function() {
