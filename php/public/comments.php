@@ -1,35 +1,41 @@
 <?php
 require_once('../private/initialize.php');
-include '../private/header.php';
+// include '../private/header.php';
 
 ?>
-<!-- <!DOCTYPE html> -->
-<!-- <html> -->
-<!-- <head> -->
-<title>Comment System using PHP and Ajax</title>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-<!-- </head> -->
-<!-- <body> -->
 
+<title>Comment System using PHP and Ajax</title>
 
 <?php
+$lifter_name ='';
+
 if(isset($_SESSION['username'])) {
-    echo "<p> session is set and it is: " . $_SESSION['username'] ?? '' . "</p>";
+    // echo "<p> session is set and it is: " . $_SESSION['username'] ?? '' . " ID: " . $_SESSION['id'] .  "</p>";
     $login_confirmed = true;
 } else {
     $login_confirmed = false;
 }
 
+// echo "<p> session is set and it is: " . $_SESSION['username'] . "<br> ID: " . $_SESSION['id'] .  "</p>";
+
+
+$id = $_GET['user_id'];
+$query_string = "SELECT Name FROM bcpa_powerlifting_database WHERE Id = '$id'";
+$query = mysqli_query($db, $query_string);
+
+// Loop through results
+while ($row = mysqli_fetch_assoc($query)) {
+    $lifter_name =  $row['Name'];
+}
+
+
+
 echo '<br />';
-echo '<h2 align="center"><a href="#">Comment System using PHP and Ajax</a></h2>';
+// echo '<h2 align="center"><a href="#">Comment For: ' . $_GET['user_id'] . '</a></h2>';
+echo '<h2 align="center">Comments for: ' . $lifter_name . '</h2>';
 echo '<br />';
 echo '<div class="container">';
 echo '<form method="POST" id="comment_form">';
-// echo '<div class="form-group">';
-// echo '<input type="text" name="comment_name" id="comment_name" class="form-control" placeholder="Enter Name" />';
-// echo '</div>';
 echo '<div class="form-group">';
 echo '<textarea name="comment_content" id="comment_content" class="form-control" placeholder="Enter Comment"';
 echo 'rows="5"></textarea>';
@@ -45,7 +51,6 @@ if($login_confirmed){
 echo '</div>';
 echo '</form>';
 echo '<span id="comment_message"></span>';
-// echo '<br>';
 echo '<br><div id="display_comment"></div>';
 echo '</div>';
 echo '</body>';

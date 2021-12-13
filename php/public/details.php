@@ -29,26 +29,19 @@ include 'main_functions.php';
 
 // ----------- DISPLAY DETAILS ----------- //
 
-// Get ID of lifter
-$id = $_GET['user_id'];
-$query_string = "SELECT * FROM bcpa_powerlifting_database WHERE Id = '$id'";
-// $query_power_id = "SELECT Id FROM bcpa_powerlifting_database WHERE Id = '$id'";
+// Get ID of lifter, if it is not valid display mesage otherwise give id variable the vlaue. 
+$id = '';
+if($_GET['user_id'] == null){
+    echo "<p>User Id is not set</p>";
+} else {
+    $id = $_GET['user_id'];
+}
 
-echo "<p>$id</p>";
-
-// $comment_content = '';
-
-    // $query_insert_id = "INSERT INTO tbl_comment (power_id) 
-    // VALUES (:power_id)";
-    
-    // $statement = $connect->prepare($query_insert_id);
-    // $statement->execute(array(':power_id'    => $id));
-
+// query processes. 
+$query_string = "SELECT * FROM bcpa_powerlifting_database WHERE Id = $id";
 
 $query = mysqli_query($db, $query_string);
 $query2 = mysqli_query($db, $query_string);
-
-// $query_power_id_search = mysqli_query($db, $query_power_id);
 
 start_details_table();
 
@@ -68,11 +61,8 @@ while ($row = mysqli_fetch_assoc($query2)) {
 }
 end_table();
 
-// while ($row = mysqli_fetch_assoc($query_power_id_search)){
-//     echo "<p> lifter id: " . $row['Id']. "</p>";
-// }
-
-
+// adding the id to the session.
+$_SESSION['id'] = $id;
 
 include 'comments.php';
 
