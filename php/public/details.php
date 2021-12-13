@@ -37,6 +37,8 @@ WHERE Id = '$id'";
 $query = mysqli_query($db, $query_string);
 $query2 = mysqli_query($db, $query_string);
 
+echo "<div class=container-fluid>";
+
 start_details_table();
 
 // Loop through results
@@ -53,6 +55,8 @@ while ($row = mysqli_fetch_assoc($query2)) {
     meet_details($row['MeetName'],  $row['MeetTown'],  $row['Date']);
 }
 end_table();
+
+echo "</div>";
 
 
 // ----------- INCLUDE FOOTER ----------- //
