@@ -6,10 +6,12 @@ include '../private/header.php';
 include 'main_functions.php';
 ?>
 
-<div class="jumbotron jumbotron-fluid text-center">
-    <div class="container">
-        <h1 class="display-4">Virtus Power</h1>
-        <p class="lead">Lifter Details</p>
+<div class="jumbotron jumbotron-fluid text-center jumbotron2">
+    <div class="content-holder">
+        <div class="container">
+            <h1>Virtus Power</h1>
+            <p class="lead">Lifter Details</p>
+        </div>
     </div>
 </div>
 
@@ -31,7 +33,7 @@ include 'main_functions.php';
 
 // Get ID of lifter, if it is not valid display mesage otherwise give id variable the vlaue. 
 $id = '';
-if($_GET['user_id'] == null){
+if ($_GET['user_id'] == null) {
     echo "<p>User Id is not set</p>";
 } else {
     $id = $_GET['user_id'];
@@ -43,15 +45,29 @@ $query_string = "SELECT * FROM bcpa_powerlifting_database WHERE Id = $id";
 $query = mysqli_query($db, $query_string);
 $query2 = mysqli_query($db, $query_string);
 
+echo "<div class=main-container>";
+
 start_details_table();
 
 // Loop through results
 while ($row = mysqli_fetch_assoc($query)) {
-    details($row['Name'], $row['Sex'], $row['Division'], $row['Equipment'], $row['WeightClassKg'],  $row['Best3SquatKg'],  
-    $row['Best3BenchKg'], $row['Best3DeadliftKg'], $row['TotalKg'], $row['Dots']);
+    details(
+        $row['Name'],
+        $row['Sex'],
+        $row['Division'],
+        $row['Equipment'],
+        $row['WeightClassKg'],
+        $row['Best3SquatKg'],
+        $row['Best3BenchKg'],
+        $row['Best3DeadliftKg'],
+        $row['TotalKg'],
+        $row['Dots']
+    );
 }
 
 end_table();
+
+
 
 // Meet Details
 start_meet_table();
@@ -61,11 +77,13 @@ while ($row = mysqli_fetch_assoc($query2)) {
 }
 end_table();
 
+echo "</div>";
+
 // adding the id to the session.
 $_SESSION['id'] = $id;
 
 include 'comments.php';
 
-include 'footer.php'; 
- 
- ?>
+include 'footer.php';
+
+?>

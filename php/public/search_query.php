@@ -101,7 +101,7 @@ if ($_POST['division'] == "All Divisions") {
 }
 
 // Paginate results per page
-$results_per_page = 50;
+$results_per_page = 35;
 
 // $query = "SELECT * FROM bcpa_powerlifting_database 
 // ";

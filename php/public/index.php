@@ -5,9 +5,11 @@ include 'main_functions.php';
 ?>
 
 <div class="jumbotron jumbotron-fluid text-center">
-    <div class="container-fluid">
-        <h1 class="display-4">Virtus Power</h1>
-        <p class="lead">Powerlifing Data at a Glance.</p>
+    <div class="content-holder">
+        <div class="container-fluid">
+            <h1>Virtus Power</h1>
+            <p class="lead">British Columbia's Powerlifting Database.</p>
+        </div>
     </div>
 </div>
 
@@ -34,7 +36,7 @@ include 'db.php';
 $connection = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
 // Paginate results per page
-$results_per_page = 50;
+$results_per_page = 35;
 
 $orderBy = 'ORDER BY Dots DESC';
 
@@ -65,89 +67,83 @@ if ($result === FALSE) {
 
 ?>
 <!-- Dropdown Filters -->
-<div class="jumbotron jumbotron-fluid text-center">
+<!-- <div class="jumbotron jumbotron-fluid text-center"> -->
 
-    <h1>Filters</h1>
 
-    <div class=col-lg-12>
 
-        <!-- Equipment  -->
-        <select name="equipment" id="equipment" class="select-filter">
-            <option selected> All Equipment </option>
-            <option name> Raw </option>
-            <option name> Single-ply </option>
-        </select>
+<div class="col-lg-12">
 
-        <!-- Seggs -->
-        <select name="seggs" id="seggs" class="select-filter">
-            <option selected> All Sexes </option>
-            <option name> M </option>
-            <option name> F </option>
-        </select>
+    <h2>Lifter Data Filters</h2>
 
-        <!-- Weight Class -->
-        <select name="weightclass" id="weightclass" class="select-filter">
+    <!-- Equipment  -->
+    <select name="equipment" id="equipment" class="select-filter">
+        <option selected> All Equipment </option>
+        <option name> Raw </option>
+        <option name> Single-ply </option>
+    </select>
 
-            <option selected> All Weight Classes </option>
+    <!-- Seggs -->
+    <select name="seggs" id="seggs" class="select-filter">
+        <option selected> All Sexes </option>
+        <option name> M </option>
+        <option name> F </option>
+    </select>
 
-            <optgroup label="Womens's Weight Classes">
-                <option name> 47 </option>
-                <option name> 52 </option>
-                <option name> 57 </option>
-                <option name> 63 </option>
-                <option name> 69 </option>
-                <option name> 76 </option>
-                <option name> 84 </option>
-                <option name> 84+ </option>
-            </optgroup>
+    <!-- Weight Class -->
+    <select name="weightclass" id="weightclass" class="select-filter">
 
-            <optgroup label="Men's Weight Classes">
-                <option name> 59 </option>
-                <option name> 66 </option>
-                <option name> 74 </option>
-                <option name> 83 </option>
-                <option name> 93 </option>
-                <option name> 105 </option>
-                <option name> 120 </option>
-                <option name> 120+ </option>
-            </optgroup>
-        </select>
+        <option selected> All Weight Classes </option>
 
-        <!-- Division -->
-        <select name="division" id="division" class="select-filter">
-            <option selected> All Divisions </option>
-            <option name> Sub-Juniors </option>
-            <option name> Juniors </option>
-            <option name> Open </option>
-            <option name> Masters 1 </option>
-            <option name> Masters 2 </option>
-            <option name> Masters 3 </option>
-            <option name> Masters 4 </option>
-        </select>
+        <optgroup label="Womens's Weight Classes">
+            <option name> 47 </option>
+            <option name> 52 </option>
+            <option name> 57 </option>
+            <option name> 63 </option>
+            <option name> 69 </option>
+            <option name> 76 </option>
+            <option name> 84 </option>
+            <option name> 84+ </option>
+        </optgroup>
 
-        </form>
+        <optgroup label="Men's Weight Classes">
+            <option name> 59 </option>
+            <option name> 66 </option>
+            <option name> 74 </option>
+            <option name> 83 </option>
+            <option name> 93 </option>
+            <option name> 105 </option>
+            <option name> 120 </option>
+            <option name> 120+ </option>
+        </optgroup>
+    </select>
 
-    </div>
+    <!-- Division -->
+    <select name="division" id="division" class="select-filter">
+        <option selected> All Divisions </option>
+        <option name> Sub-Juniors </option>
+        <option name> Juniors </option>
+        <option name> Open </option>
+        <option name> Masters 1 </option>
+        <option name> Masters 2 </option>
+        <option name> Masters 3 </option>
+        <option name> Masters 4 </option>
+    </select>
+
+    </form>
+
+    <!--  PAGINATION-->
+    <nav aria-label="Pagination">
+        <ul class="pagination" id="pagination-change">
+            <?php for ($page = 1; $page <= $number_of_pages; $page++) : ?>
+                <li><a href="index.php?page=<?= $page; ?>" class="page-link text-danger"><?= $page; ?></a></li>
+            <?php endfor; ?>
+        </ul>
+    </nav>
+
 </div>
+<!-- </div> -->
 
-<!--  -->
-<nav aria-label="Pagination">
-    <ul class="pagination" id="pagination-change">
-        <!-- <li class="page-item">
-            <a href="index.php?page=<?= $Previous; ?>" aria-label="Previous" class="page-link">
-                <span aria-hidden="true">Previous</span>
-            </a>
-        </li class="page-item"> -->
-        <?php for ($page = 1; $page <= $number_of_pages; $page++) : ?>
-            <li><a href="index.php?page=<?= $page; ?>" class="page-link"><?= $page; ?></a></li>
-        <?php endfor; ?>
-        <!-- <li class="page-item">
-            <a href="index.php?page=<?= $Next; ?>" aria-label="Next" class="page-link">
-                <span aria-hidden="true">Next</span>
-            </a>
-        </li> -->
-    </ul>
-</nav>
+
 
 <?php
 

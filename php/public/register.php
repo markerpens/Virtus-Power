@@ -3,17 +3,17 @@ require_once('../private/initialize.php');
 
 $errors = [];
 
-if(is_post_request()){
+if (is_post_request()) {
 
     //check if passwords match 
-    if($_POST['password'] === $_POST['password_confirm']){
+    if ($_POST['password'] === $_POST['password_confirm']) {
 
         // if passwords match then look for an existing user. 
-        $existing_query = "SELECT COUNT(*) as count FROM members WHERE username ='" . $_POST['username'] . "'"; 
+        $existing_query = "SELECT COUNT(*) as count FROM members WHERE username ='" . $_POST['username'] . "'";
         $existing_res = mysqli_query($db, $existing_query);
 
         // if count is not 0 that means there is an existing account with that username. 
-        if(mysqli_fetch_assoc($existing_res)['count'] !=0){
+        if (mysqli_fetch_assoc($existing_res)['count'] != 0) {
             array_push($errors, 'The username already exists in the database, please try another username instead');
         } else {
             // if no account with same username then encript password.
@@ -29,13 +29,13 @@ if(is_post_request()){
                 '" . mysqli_real_escape_string($db, $_POST['gender']) . "')";
 
             // if sucessful data insertion to database then do the folowing. 
-            if(mysqli_query($db, $insert_user_query)){
+            if (mysqli_query($db, $insert_user_query)) {
                 //sets the user to the session and reidrects to the main page.
                 $_SESSION['username'] = $_POST['username'];
                 redirect_to(url_for('index.php'));
             } else {
                 // displays the mysql error if failed
-                array_push($errors, mysqli_error($db)); 
+                array_push($errors, mysqli_error($db));
             }
         }
     } else {
@@ -49,39 +49,66 @@ if(is_post_request()){
 <?php $page_title = 'Register'; ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<div id="content">
-    <h1>Register</h1>
+<section class="vh-100">
+    <div class=" container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
 
-    <?php echo display_errors($errors); ?>
+                        <h3 class="mb-5">Register to Virtus Power</h3>
 
-    <form action="register.php" method="post">
-        First Name:<br />
-        <input type="text" name="first_name" value="" required /><br />
+                        <?php echo display_errors($errors); ?>
 
-        Last Name:<br />
-        <input type="text" name="last_name" value="" required /><br />
+                        <form action="register.php" method="post">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="first_name">First Name</label>
+                                <input type="text" name="first_name" value="" id="first_name" class="form-control form-control-lg" />
+                            </div>
 
-        Gender: <br />
-        <input type="radio" name="gender" id="female" value="Female" required />
-        <label for="female">Female</label>
-        <input type="radio" name="gender" id="male" value="Male" required />
-        <label for="male">Male</label><br />
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="last_name">Last Name</label>
+                                <input type="text" name="last_name" value="" id="last_name" class="form-control form-control-lg" />
+                            </div>
 
-        Email:<br />
-        <input type="text" name="email" value="" required /><br />
 
-        Username:<br />
-        <input type="text" name="username" value="" required /><br />
+                            <div class="form-outline mb-4">
+                                <input type="radio" name="gender" id="female" value="Female" required />
+                                <label for="female">Female</label>
+                                <input type="radio" name="gender" id="male" value="Male" required />
+                                <label for="male">Male</label>
+                            </div>
 
-        Password:<br />
-        <input type="password" name="password" value="" required /><br />
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="email">Email</label>
+                                <input type="text" name="email" value="" id="email" class="form-control form-control-lg" />
+                            </div>
 
-        Confirm Password:<br />
-        <input type="password" name="password_confirm" value="" required /><br />
-        <input type="submit" />
-    </form>
-</div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="username">Username</label>
+                                <input type="text" name="username" value="" id="username" class="form-control form-control-lg" />
+                            </div>
 
-<?php 
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="password">Password</label>
+                                <input type="text" name="password" value="" id="password" class="form-control form-control-lg" />
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="password_confirm">Confirm Password</label>
+                                <input type="text" name="password_confirm" value="" id="password_confirm" class="form-control form-control-lg" />
+                            </div>
+
+                            <button class="btn btn-lg btn-block" type="submit">Register</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<?php
 // include(SHARED_PATH . '/staff_footer.php'); --- fix when more is added
 ?>

@@ -19,23 +19,14 @@
                     weightclass: weightclass,
                     division: division,
                 },
-                beforeSend: function() {
-                    $(".main-container").html("<span>Working...</span>");
-                },
+                // beforeSend: function() {
+                //     $(".main-container").html("<span>Working...</span>");
+                // },
                 success: function(data) {
                     $(".main-container").html(data);
                 }
             });
         });
-    });
-
-    // TEST
-    $('#pagination-change').twbsPagination({
-        totalPages: 153,
-        visiblePages: 10,
-        onPageClick: function(event, page) {
-            $('.page-item').html('Page ' + page);
-        }
     });
 </script>
 
