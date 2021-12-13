@@ -30,3 +30,6 @@
 
   $db = db_connect();
   $errors = [];
+  $connect = new PDO('mysql:host=localhost;dbname=virtus_power', 'root', '');
+
+?>

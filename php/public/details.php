@@ -29,21 +29,26 @@ include 'main_functions.php';
 
 // ----------- DISPLAY DETAILS ----------- //
 
-// Get ID of lifter
-$id = $_GET['user_id'];
-$query_string = "SELECT * FROM bcpa_powerlifting_database 
-WHERE Id = '$id'";
+// Get ID of lifter, if it is not valid display mesage otherwise give id variable the vlaue. 
+$id = '';
+if($_GET['user_id'] == null){
+    echo "<p>User Id is not set</p>";
+} else {
+    $id = $_GET['user_id'];
+}
+
+// query processes. 
+$query_string = "SELECT * FROM bcpa_powerlifting_database WHERE Id = $id";
 
 $query = mysqli_query($db, $query_string);
 $query2 = mysqli_query($db, $query_string);
-
-echo "<div class=container-fluid>";
 
 start_details_table();
 
 // Loop through results
 while ($row = mysqli_fetch_assoc($query)) {
-    details($row['Name'], $row['Sex'], $row['Division'], $row['Equipment'], $row['WeightClassKg'],  $row['Best3SquatKg'],  $row['Best3BenchKg'], $row['Best3DeadliftKg'], $row['TotalKg'], $row['Dots']);
+    details($row['Name'], $row['Sex'], $row['Division'], $row['Equipment'], $row['WeightClassKg'],  $row['Best3SquatKg'],  
+    $row['Best3BenchKg'], $row['Best3DeadliftKg'], $row['TotalKg'], $row['Dots']);
 }
 
 end_table();
@@ -56,8 +61,11 @@ while ($row = mysqli_fetch_assoc($query2)) {
 }
 end_table();
 
-echo "</div>";
+// adding the id to the session.
+$_SESSION['id'] = $id;
 
+include 'comments.php';
 
-// ----------- INCLUDE FOOTER ----------- //
-include 'footer.php';
+include 'footer.php'; 
+ 
+ ?>

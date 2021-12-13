@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2021 at 10:29 PM
+-- Generation Time: Dec 08, 2021 at 11:36 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -1591,6 +1591,49 @@ INSERT INTO `bcpa_powerlifting_database` (`Name`, `Sex`, `Event`, `Equipment`, `
 ('John Navarro', 'M', 'SBD', 'Raw', 'Juniors', '108.60', '120', '227.5', '142.5', '247.5', '617.5', '1', '367.51', '364.85', '348.59', '75.06', 'Yes', 'Canada', 'BC', 'CPU', 'IPF', '2019-02-23 00:00:00', 'Canada', 'BC', 'Burnaby', 'BCPA Winter Open', 1520),
 ('Jeffrey Nguyen', 'M', 'SBD', 'Raw', 'Juniors', '99.60', '105', '185.0', '127.5', '215.0', '527.5', '1', '325.25', '321.55', '307.13', '66.77', 'Yes', 'Canada', 'BC', 'CPU', 'IPF', '2019-02-23 00:00:00', 'Canada', 'BC', 'Burnaby', 'BCPA Winter OpenOpen', 1521);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `members`
+--
+
+CREATE TABLE `members` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `hashed_password` varchar(255) NOT NULL,
+  `gender` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`id`, `first_name`, `last_name`, `email`, `username`, `hashed_password`, `gender`) VALUES
+(7, '1', '1', '1', '1', '$2y$10$p7xOmHT2jxJxBWqaCxc7Yek9lQ8CY/Kh8P3TaWRxo8ge0eAuign0u', 'Female'),
+(8, 'B', 'B', 'b', 'c', '$2y$10$AFIj3E2fO23tdSU2VHVcf.xJbELcf.gZDEfqZnAMqCiDJVIzINega', 'Female'),
+(11, '3', '3', '3', '3', '$2y$10$kBxbk6hHSUpC/IpvDSpt/O0d2lKSMEC5ZYr96BiDOI04UkDqlvmK2', 'Male'),
+(12, 'Bryan', 'Cortes', 'bryan.cortes@outlook.com', 'bb', '$2y$10$2f80jdq524JXJf1/.l9TgeaYzCvEM66OdcHsmDwBNbbG9ML8LoUPe', 'Male'),
+(13, '9', '9', '9', '9', '$2y$10$SHORPVlCU4FjAAoM4cH3n.DXfWaSiEkjUeZyJJU5u4Y7Hb9jGqcMS', 'Female'),
+(14, '8', '8', '8', '8', '$2y$10$t2SC68LsiAUZgx/ijGimvOU9bdfs53KeeAZ8HOjDcXMhE0O.Sa64K', 'Female'),
+(15, '5', '5', '5', '5', '$2y$10$9UYwSBUpQErNuvd3dXo1eef7JA/tfhcop2XrC5PwG3FB3WwBgDpn.', 'Female');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_comment`
+--
+
+CREATE TABLE `tbl_comment` (
+  `comment_id` int(11) NOT NULL,
+  `parent_comment_id` int(11) NOT NULL,
+  `comment` varchar(200) NOT NULL,
+  `comment_sender_name` varchar(40) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -1602,6 +1645,18 @@ ALTER TABLE `bcpa_powerlifting_database`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `members`
+--
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_comment`
+--
+ALTER TABLE `tbl_comment`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1610,6 +1665,18 @@ ALTER TABLE `bcpa_powerlifting_database`
 --
 ALTER TABLE `bcpa_powerlifting_database`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1522;
+
+--
+-- AUTO_INCREMENT for table `members`
+--
+ALTER TABLE `members`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `tbl_comment`
+--
+ALTER TABLE `tbl_comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
